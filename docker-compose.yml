@@ -7,7 +7,6 @@ services:
             - .:/elocal
         tty: true
         networks:
-            - dmz
             - tnet2
         command: tcpdump -nSt icmp
     rt2:
@@ -16,7 +15,6 @@ services:
             - .:/elocal
         tty: true
         networks:
-            - dmz
             - tnet2
         command: ping -s 4000 rt1
         depends_on: 
@@ -27,7 +25,6 @@ services:
             - .:/elocal
         tty: true
         networks:
-            - dmz
             - tnet2
         command: ping rt1
         depends_on: 
@@ -40,8 +37,7 @@ services:
             - .:/elocal
         tty: true
         networks:
-            - tnet2
-           
+            - tnet2   
         command: ping -c 1 rt3
         depends_on:
             - rt3
@@ -52,11 +48,10 @@ services:
       tty: true
       networks: 
            - tnet1
-      command: bash -c 'echo \"- interfetele de retea:\" && ip addr && echo \"- gateway:\" && ip route show'
+      command: "bash -c 'echo \"- interfetele de retea:\" && ip addr && echo \"- gateway:\" && ip route show'"
 
 
 networks:
-    dmz: {}
     tnet2:
         ipam:
             driver: default
